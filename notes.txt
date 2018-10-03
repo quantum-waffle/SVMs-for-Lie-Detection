@@ -1,0 +1,41 @@
+*** NOTES FILE ***
+
+### Support Vector Machines for Classification
+# Description of all kernels for SVM, with math
+https://mubaris.com/2017/10/14/svm-python/
+
+### Implementing SVM and Kernel SVM with Python's Scikit-Learn
+# More kernels, confusion matrix examples
+https://stackabuse.com/implementing-svm-and-kernel-svm-with-pythons-scikit-learn/
+
+### Using Tensorflow and Support Vector Machine to Create an Image Classifications Engine
+# Example with SKlearn
+https://code.oursky.com/tensorflow-svm-image-classifications-engine/
+
+### SVM MNIST handwritten digit classification
+# More confusion matrix examples
+https://plon.io/explore/svm-mnist-handwritten-digit/USpQjoNcO8QHlmG6T
+
+### Complexity of SKlearn SVM for big datasets
+# StackOverflow question
+https://stackoverflow.com/questions/40077432/scikit-learn-svm-svc-is-extremely-slow#
+
+### From Scikit-learn to TensorFlow : Part 1
+# Comparision SKlearn and Tensorflow SVMs
+https://towardsdatascience.com/from-scikit-learn-to-tensorflow-part-1-9ee0b96d4c85
+
+### tf.contrib.learn.SVM 
+# Documentation for Tensorflow's SVM implementation
+https://www.tensorflow.org/api_docs/python/tf/contrib/learn/SVM
+
+### github tensorflow-101
+# Github example with similar application
+https://github.com/burness/tensorflow-101/blob/master/machinelearning_toolkit/scripts/simple-tf-svm.py
+
+### github tensorflow cookbook
+# Github similar above example with plotting
+https://github.com/nfmcclure/tensorflow_cookbook/blob/master/04_Support_Vector_Machines/05_Implementing_Nonlinear_SVMs/05_nonlinear_svm.py
+
+### github svm-tensorflow
+# Another github example, with a good organization
+https://github.com/qmeeus/svm-tensorflow/blob/master/main.py
