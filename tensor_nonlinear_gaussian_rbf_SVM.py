@@ -3,6 +3,8 @@
 # Gaussian Kernel:
 # K(x1, x2) = exp(-gamma * abs(x1 - x2)^2)
 
+# PEP 484:
+# https://www.python.org/dev/peps/pep-0484/
 import pandas as pd, numpy as np, tensorflow as tf, matplotlib.pyplot as plt
 from tensorflow.python.framework import ops
 from sklearn.model_selection import train_test_split 
@@ -15,19 +17,20 @@ def main():
     LABEL_COLUMN = ['Class']
     CONTINUOUS_COLUMNS = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6',]
     CATEGORICAL_COLUMNS = []
-
     # Declare main variables
     batch_size = 500
     gamma_value = -25.050
     optimizer_value = 0.01
+    """batch_size (int): Size of data frame for SVM model (preventing memory allocation error).
+       gamma_value (float): Constant for gaussian rbf kernel.
+       optimizer_value (vloat): Constant for loss function optimizer.
+    """
     train_iterations = 2500
     test_iterations = 1000
-
     dataset_path = 'Training_data/db.csv'
     
     dataset_data = load_dataset_data(dataset_path, db=True)
     tensors, variables, loss, accuracy, train_step, prediction = build_model(batch_size, gamma_value, optimizer_value)
-
     print("[!] Creating new Tensorflow(r) session...")
     with tf.Session() as sess:
         print("[ ] Initializing variables...")
@@ -37,10 +40,23 @@ def main():
         test(dataset_data, tensors, batch_size, sess, accuracy, test_iterations)
 
         entry_cross = load_dataset_data("Cross_validation/E002.csv", entry_file=True)
-
         predict(entry_cross, dataset_data, tensors, batch_size, sess, prediction)
 
+
 def load_dataset_data(path, db=False, test_file=False, entry_file=False):
+    """Funtion for loading data from csv files into numpy arrays.
+
+    Args:
+        path (String): path to csv file.
+        db (bool): set True if loading a whole trainig dataset.
+        test_file (bool): set True if loading a test file with attributes and labels.
+        entry_file (bool): set True if laoding a entry file with just attributes (for prediction).
+
+    Returns:
+        np.array, np.array, np.array, np.array: (if db) test and train split of whole dataset. 
+        np.array, np.array: (if test_file) attributes and labes of a test file.
+        np.array: (if entry_file) just attributes of a entry file, meant for prediction. 
+    """
     print("[ ] Importing dataset from {}".format(path))
     if db or test_file:
         colnames = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6','Class']
@@ -49,9 +65,11 @@ def load_dataset_data(path, db=False, test_file=False, entry_file=False):
     else:
         return -1
 
+    # Reading the dataset csv
     data = pd.read_csv(path, sep='\t' ,header=None, names=colnames)
     print("[+] Dataset shape: {}".format(data.shape))
     print("[+] Dataset head:")
+    # Show first rows of dataset
     print(data.head())
     
     if db or test_file:
@@ -73,6 +91,22 @@ def load_dataset_data(path, db=False, test_file=False, entry_file=False):
 
 
 def build_model(batch_size, gamma_value, optimizer_value):
+    """SVM model builder.
+
+    Args:
+        batch_size (int): Size of data frame for SVM model (preventing memory allocation error).
+        gamma_value (float): Constant for gaussian rbf kernel.
+        optimizer_value (vloat): Constant for loss function optimizer.
+
+    Returns:
+        [tensor, tensor, tensor]: placeholders for model variables.
+        [tf variable}: SVM rbf variables generated.
+        tf function: loss tensorflow function
+        tf function: accuracy tensorflow function
+        tf function: train tensorflow function
+        tf function: prediction tensorflow function
+    """
+
     # Initialize placeholders
     print("[ ] Initializing placeholders")
     x_data = tf.placeholder( dtype=tf.float32)
