@@ -25,8 +25,8 @@ def main():
        gamma_value (float): Constant for gaussian rbf kernel.
        optimizer_value (vloat): Constant for loss function optimizer.
     """
-    train_iterations = 2500
-    test_iterations = 1000
+    train_iterations = 5000
+    test_iterations = 2500
     dataset_path = 'Training_data/db.csv'
     
     dataset_data = load_dataset_data(dataset_path, db=True)
@@ -147,7 +147,7 @@ def build_model(batch_size, gamma_value, optimizer_value):
     return [x_data, y_target, prediction_grid], [b], loss, accuracy, train_step, prediction
 
 
-def train(data, tensors, train_step, batch_size, sess, loss, accuracy, train_iterations, steps=100):
+def train(data, tensors, train_step, batch_size, sess, loss, accuracy, train_iterations, steps=500):
     X_train = data[0]
     y_train = data[2] 
     x_data, y_target, prediction_grid = tensors
@@ -178,7 +178,7 @@ def train(data, tensors, train_step, batch_size, sess, loss, accuracy, train_ite
     plot_accuracy_graph(batch_accuracy)
 
 
-def test(data, tensors, batch_size, sess, accuracy, test_iterations, steps=100):
+def test(data, tensors, batch_size, sess, accuracy, test_iterations, steps=500):
     X_test = data[1]
     y_test = data[3]
     x_data, y_target, prediction_grid = tensors
@@ -200,8 +200,9 @@ def test(data, tensors, batch_size, sess, accuracy, test_iterations, steps=100):
     print("[+] Final accuracy: {}; Average accuracy: {}".format(test_accuracy[-1], np.mean(test_accuracy)))
 
 
-def predict(data, train_data, tensors, batch_size, sess, prediction, iterations=1000):
+def predict(data, train_data, tensors, batch_size, sess, prediction, iterations=5000):
     accumulation = []
+    print("[!] ---------------- Predicting (may take a while)...")
     for i in range(iterations):
         X_train = train_data[0]
         y_train = train_data[2] 
@@ -216,7 +217,7 @@ def predict(data, train_data, tensors, batch_size, sess, prediction, iterations=
         #[grid_predictions] = sess.run(prediction, feed_dict={x_data: rX, y_target: rY, prediction_grid: data[0]})
         [grid_predictions] = sess.run(prediction, feed_dict={x_data: rX, y_target:rY, prediction_grid:rZ})
         accumulation.append(int(np.ceil(np.abs(np.mean(grid_predictions)))))
-    print("[+] Average prediction: {}".format(int(np.mean(accumulation))))
+    print("[+] Average prediction (0 for Truth, 1 for Lie): {}".format(int(np.mean(accumulation))))
 
 
 def plot_accuracy_graph(_array):
