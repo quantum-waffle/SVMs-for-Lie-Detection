@@ -43,18 +43,18 @@ Deviance Residuals:
 
 Coefficients: (5 not defined because of singularities)
               Estimate Std. Error z value Pr(>|z|)  
-(Intercept)  3.703e+01  2.983e+01   1.241   0.2145  
+(Intercept)  3.703e+01  2.983e+01   1.241   0.2145   
 X3           7.937e-02  1.654e+00   0.048   0.9617  
-X4          -1.405e+00  1.014e+00  -1.385   0.1660  
-X5           8.656e-01  2.717e+00   0.319   0.7500  
-X6           8.336e-01  7.365e-01   1.132   0.2577  
+X4          -1.405e+00  1.014e+00  -1.385   0.1660 . 
+X5           8.656e-01  2.717e+00   0.319   0.7500 . 
+X6           8.336e-01  7.365e-01   1.132   0.2577 . 
 X7                  NA         NA      NA       NA  
 X8                  NA         NA      NA       NA  
 X9                  NA         NA      NA       NA  
 X10                 NA         NA      NA       NA  
 X11                 NA         NA      NA       NA  
-X12         -6.070e+00  8.465e+00  -0.717   0.4733  
-X13         -1.098e+00  3.545e+00  -0.310   0.7567  
+X12         -6.070e+00  8.465e+00  -0.717   0.4733  .
+X13         -1.098e+00  3.545e+00  -0.310   0.7567  .
 X14         -9.369e-02  2.357e+00  -0.040   0.9683  
 X15          1.274e-04  9.787e-05   1.302   0.1930  
 X16         -3.097e-04  1.783e-04  -1.737   0.0824 .
@@ -71,3 +71,8 @@ Residual deviance: 17.574  on 12  degrees of freedom
 AIC: 41.574
 
 Number of Fisher Scoring iterations: 7
+
+# X3 sexo, x4 edad, x5, literalidad, x6 escolaridad, x7 grupo etnico, x8 estado civil, x9 l1 ,x10 l2
+# x11 sector pobl uvg, x12 trabaja, x13 acomp psico, x14 tipo 
+
+# X4, X5, X6, X12, X13

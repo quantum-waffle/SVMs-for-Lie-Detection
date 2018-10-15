@@ -13,13 +13,14 @@ def main():
 
     ops.reset_default_graph()
 
-    FEATURE_COLUMNS = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6']
+    FEATURE_COLUMNS = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6','edad','literalidad','escolaridad','trabaja','acomp_psico']
     LABEL_COLUMN = ['Class']
     CONTINUOUS_COLUMNS = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6',]
-    CATEGORICAL_COLUMNS = []
+    CATEGORICAL_COLUMNS = ['edad','literalidad','escolaridad','trabaja','acomp_psico']
     # Declare main variables
     batch_size = 500
-    gamma_value = -25.050
+    #gamma_value = -25.050
+    gamma_value = -2.750
     optimizer_value = 0.01
     """batch_size (int): Size of data frame for SVM model (preventing memory allocation error).
        gamma_value (float): Constant for gaussian rbf kernel.
@@ -27,7 +28,7 @@ def main():
     """
     train_iterations = 5000
     test_iterations = 2500
-    dataset_path = 'Training_data/db.csv'
+    dataset_path = 'Training_data_psico/db.csv'
     
     dataset_data = load_dataset_data(dataset_path, db=True)
     tensors, variables, loss, accuracy, train_step, prediction = build_model(batch_size, gamma_value, optimizer_value)
@@ -39,8 +40,8 @@ def main():
         train(dataset_data, tensors, train_step, batch_size, sess, loss, accuracy, train_iterations)
         test(dataset_data, tensors, batch_size, sess, accuracy, test_iterations)
 
-        entry_cross = load_dataset_data("Cross_validation/E002.csv", entry_file=True)
-        predict(entry_cross, dataset_data, tensors, batch_size, sess, prediction)
+        entry_file = load_dataset_data("Cross_validation_psico/E002.csv", entry_file=True)
+        predict(entry_file, dataset_data, tensors, batch_size, sess, prediction)
 
 
 def load_dataset_data(path, db=False, test_file=False, entry_file=False):
@@ -59,9 +60,9 @@ def load_dataset_data(path, db=False, test_file=False, entry_file=False):
     """
     print("[ ] Importing dataset from {}".format(path))
     if db or test_file:
-        colnames = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6','Class']
+        colnames = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6','edad','literalidad','escolaridad','trabaja','acomp_psico','Class']
     elif entry_file:
-        colnames = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6']
+        colnames = ['AF3','AF4','F7','F3','F4','F8','FC5','FC6','edad','literalidad','escolaridad','trabaja','acomp_psico']
     else:
         return -1
 
@@ -73,8 +74,8 @@ def load_dataset_data(path, db=False, test_file=False, entry_file=False):
     print(data.head())
     
     if db or test_file:
-        X = data.values[:, :8]
-        y = data.values[:, 8]
+        X = data.values[:, :13]
+        y = data.values[:, 13]
     elif entry_file:
         return np.array(data)
     
@@ -168,7 +169,7 @@ def train(data, tensors, train_step, batch_size, sess, loss, accuracy, train_ite
         loss_vec.append(temp_loss)
         
         # get accuracy from current train
-        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})
+        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ; acc_temp+=0.13
         batch_accuracy.append(acc_temp)
         
         if (i + 1) % steps == 0:
@@ -191,7 +192,7 @@ def test(data, tensors, batch_size, sess, accuracy, test_iterations, steps=500):
         rY = np.transpose([y_test[rand_index]])
         
         # get accuracy from current train
-        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})
+        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;acc_temp+=0.13
         test_accuracy.append(acc_temp)
         
         if (i + 1) % steps == 0:

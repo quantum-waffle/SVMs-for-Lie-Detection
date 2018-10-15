@@ -4,7 +4,8 @@ Cross_validation/
 Questionnaire_results/
 Training_data/
 Training_data_raw/
-
+Training_data_psico/
+Cross_validation_psico/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

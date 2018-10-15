@@ -27,8 +27,9 @@ def generateFiles(truths, lies):
     print("Processing truth files")
     for i in range(len(truths)):
         with open(r"Training_data_raw/{}".format(truths[i]), 'r') as infile, \
-             open(r"Training_data/{}".format(truths[i]), 'w') as outfile:
+             open(r"Training_data_psico/{}".format(truths[i]), 'w') as outfile:
             print("Attempting to create truth file {}".format(i))
+            psico_vars = add_psico_vars(truths[i])
             for line in infile:
                 try:
                     #print("Trying to split data")
@@ -56,15 +57,16 @@ def generateFiles(truths, lies):
 
                     #outfile.write(d1+"\t"+d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d10+"\t"+d11+"\t"+d12+"\t"+d13+"\t"+d14+"\t"+d15+"\t"+d16)
                     #print("Writing output file")
-                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+"0"+"\n")
+                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+psico_vars+"\t"+"0"+"\n")
                     #outfile.write(d2+"\t"+d3+"\t"+d5+"\t"+d6+"\t"+"0"+"\n")
             print("Truth file {} completed :]".format(i))
 
     print("Processing lie files")
     for j in range(len(lies)):
         with open(r'Training_data_raw/{}'.format(lies[j]), 'r') as infile, \
-             open(r'Training_data/{}'.format(lies[j]), 'w') as outfile:
+             open(r'Training_data_psico/{}'.format(lies[j]), 'w') as outfile:
             print("Attempting to create lie file {}".format(j))
+            psico_vars = add_psico_vars(lies[j])
             for line in infile:
                 try:
                     #print("Trying to split data")
@@ -93,7 +95,7 @@ def generateFiles(truths, lies):
                     #print("Writing output file")
                     #outfile.write(d1+"\t"+d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d10+"\t"+d11+"\t"+d12+"\t"+d13+"\t"+d14+"\t"+d15+"\t"+d16)
                     #outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d16.rstrip()+"\t"+"1"+"\n")
-                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+"1"+"\n")
+                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+psico_vars+"\t"+"1"+"\n")
                     #outfile.write(d2+"\t"+d3+"\t"+d5+"\t"+d6+"\t"+"1"+"\n")
             print("Lie file {} completed :]".format(j))
 
@@ -102,8 +104,9 @@ def generateCrossFiles(truths, lies):
     print("Processing truth files")
     for i in range(len(truths)):
         with open(r"Training_data_raw/{}".format(truths[i]), 'r') as infile, \
-             open(r"Cross_validation/{}".format(truths[i]), 'w') as outfile:
+             open(r"Cross_validation_psico/{}".format(truths[i]), 'w') as outfile:
             print("Attempting to create truth file {}".format(i))
+            psico_vars = add_psico_vars(truths[i])
             for line in infile:
                 try:
                     #print("Trying to split data")
@@ -131,15 +134,16 @@ def generateCrossFiles(truths, lies):
 
                     #outfile.write(d1+"\t"+d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d10+"\t"+d11+"\t"+d12+"\t"+d13+"\t"+d14+"\t"+d15+"\t"+d16)
                     #print("Writing output file")
-                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\n")
+                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+psico_vars+"\n")
                     #outfile.write(d2+"\t"+d3+"\t"+d5+"\t"+d6+"\t"+"0"+"\n")
             print("Truth file {} completed :]".format(i))
 
     print("Processing lie files")
     for j in range(len(lies)):
         with open(r'Training_data_raw/{}'.format(lies[j]), 'r') as infile, \
-             open(r'Cross_validation/{}'.format(lies[j]), 'w') as outfile:
+             open(r'Cross_validation_psico/{}'.format(lies[j]), 'w') as outfile:
             print("Attempting to create lie file {}".format(j))
+            psico_vars = add_psico_vars(lies[j])
             for line in infile:
                 try:
                     #print("Trying to split data")
@@ -168,7 +172,7 @@ def generateCrossFiles(truths, lies):
                     #print("Writing output file")
                     #outfile.write(d1+"\t"+d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d10+"\t"+d11+"\t"+d12+"\t"+d13+"\t"+d14+"\t"+d15+"\t"+d16)
                     #outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+d16.rstrip()+"\t"+"1"+"\n")
-                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\n")
+                    outfile.write(d2+"\t"+d3+"\t"+d4+"\t"+d5+"\t"+d6+"\t"+d7+"\t"+d8+"\t"+d9+"\t"+psico_vars+"\n")
                     #outfile.write(d2+"\t"+d3+"\t"+d5+"\t"+d6+"\t"+"1"+"\n")
             print("Lie file {} completed :]".format(j))
 
@@ -176,15 +180,62 @@ def generateCrossFiles(truths, lies):
 
 def unifyFiles(truths, lies):
     all_files = truths + lies
-    with open('Training_data/db.csv', 'w') as outfile:
+    with open('Training_data_psico/db.csv', 'w') as outfile:
         for fname in all_files:
-            with open('Training_data/{}'.format(fname)) as infile:
+            with open('Training_data_psico/{}'.format(fname)) as infile:
                 for line in infile:
                     outfile.write(line)
 
 
+def add_psico_vars(file_name):
+    if "A001" in file_name:
+        return("38"+"\t"+"0"+"\t"+"4"+"\t"+"1"+"\t"+"1")
+    elif "E002" in file_name:
+        return("18"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"1")
+    elif "E003" in file_name:
+        return("23"+"\t"+"0"+"\t"+"1"+"\t"+"1"+"\t"+"0")
+    elif "E004" in file_name:
+        return("18"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"1")
+    elif "E006" in file_name:
+        return("24"+"\t"+"1"+"\t"+"4"+"\t"+"0"+"\t"+"0")
+    elif "E007" in file_name:
+        return("23"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"0")
+    elif "E011" in file_name:
+        return("21"+"\t"+"0"+"\t"+"4"+"\t"+"1"+"\t"+"1")
+    elif "E002" in file_name:
+        return("18"+"\t"+"0"+"\t"+"0"+"\t"+"0"+"\t"+"1")
+    elif "E013" in file_name:
+        return("22"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"0")
+    elif "E014" in file_name:
+        return("20"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"0")
+    elif "E016" in file_name:
+        return("20"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"1")
+    elif "E018" in file_name:
+        return("21"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"0")
+    elif "E021" in file_name:
+        return("21"+"\t"+"0"+"\t"+"1"+"\t"+"1"+"\t"+"1")
+    elif "E027" in file_name:
+        return("18"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"1")
+    elif "E039" in file_name:
+        return("21"+"\t"+"0"+"\t"+"4"+"\t"+"1"+"\t"+"0")
+    elif "E041" in file_name:
+        return("21"+"\t"+"1"+"\t"+"4"+"\t"+"1"+"\t"+"1")
+    elif "E052" in file_name:
+        return("19"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"1")
+    elif "E056" in file_name:
+        return("19"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"0")
+    elif "E060" in file_name:
+        return("19"+"\t"+"0"+"\t"+"0"+"\t"+"1"+"\t"+"1")
+    elif "E061" in file_name:
+        return("23"+"\t"+"0"+"\t"+"4"+"\t"+"1"+"\t"+"0")
+    elif "C006" in file_name:
+        return("21"+"\t"+"1"+"\t"+"4"+"\t"+"1"+"\t"+"1")
+    elif "E030" in file_name:
+        return("19"+"\t"+"1"+"\t"+"4"+"\t"+"1"+"\t"+"0")
 
 
-#generateFiles(truths, lies)
-#unifyFiles(truths, lies)
+
+
+generateFiles(truths, lies)
+unifyFiles(truths, lies)
 generateCrossFiles(truths, lies)
