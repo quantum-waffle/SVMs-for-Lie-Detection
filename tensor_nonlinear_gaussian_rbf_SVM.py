@@ -230,5 +230,9 @@ def plot_accuracy_graph(_array):
     plt.show()
 
 
+def random_state_generator(iterations):
+    return [i for x in range(iterations)]
+        
+
 if __name__ == "__main__":
     main()
