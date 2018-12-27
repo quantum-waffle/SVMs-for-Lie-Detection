@@ -1,7 +1,6 @@
 # SVMs-for-Lie-Detection
 
- ![PyPI - Python Version](https://img.shields.io/badge/python-3.6.5-blue.svg) ![PyPI - Library](https://img.shields.io/badge/library-tensorflow-blue.svg)  [![Python3 Status](https://caniusepython3.com/project/django-firebird.png)](https://caniusepython3.com/project/django-firebird)
-
+ ![PyPI - Python Version](https://img.shields.io/badge/python-3.6.5-blue.svg) ![PyPI - Library](https://img.shields.io/badge/library-tensorflow-blue.svg)  
 This proyect provides a Support Vector Machine implementation for lie detection, from EGG metrics. Get Tensorflow [here](https://www.tensorflow.org/).
 
 ## Installation
