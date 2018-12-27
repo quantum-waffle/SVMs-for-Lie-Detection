@@ -169,7 +169,7 @@ def train(data, tensors, train_step, batch_size, sess, loss, accuracy, train_ite
         loss_vec.append(temp_loss)
         
         # get accuracy from current train
-        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ; acc_temp+=0.13
+        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})
         batch_accuracy.append(acc_temp)
         
         if (i + 1) % steps == 0:
@@ -192,7 +192,7 @@ def test(data, tensors, batch_size, sess, accuracy, test_iterations, steps=500):
         rY = np.transpose([y_test[rand_index]])
         
         # get accuracy from current train
-        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ;acc_temp+=0.13
+        acc_temp = sess.run(accuracy, feed_dict={x_data: rX, y_target: rY, prediction_grid: rX})
         test_accuracy.append(acc_temp)
         
         if (i + 1) % steps == 0:
