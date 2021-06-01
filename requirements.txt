@@ -32,6 +32,6 @@ socketIO-client==0.7.2
 tensorboard==1.10.0
 tensorflow==1.10.1
 termcolor==1.1.0
-urllib3==1.23
+urllib3==1.26.5
 websocket-client==0.53.0
 Werkzeug==0.14.1
