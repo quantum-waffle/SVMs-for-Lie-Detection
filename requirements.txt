@@ -30,7 +30,7 @@ six==1.11.0
 sklearn==0.0
 socketIO-client==0.7.2
 tensorboard==1.10.0
-tensorflow==1.10.1
+tensorflow==2.5.3
 termcolor==1.1.0
 urllib3==1.23
 websocket-client==0.53.0
